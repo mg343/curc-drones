@@ -177,9 +177,17 @@ body:has(dialog[open]){overflow:hidden}
 
 /* Outline wordmark and boxed action, in the spirit of a hairline logotype. */
 .masthead h1{
+  display:flex;
+  align-items:baseline;
+  width:max-content;
+  max-width:100%;
   color:transparent;
   -webkit-text-stroke:clamp(1px,.14vw,2.25px) var(--ink);
 }
+.masthead h1 .hash,
+.masthead h1 .word{flex:none}
+/* Keep the tight tracking on the word, and hold # off the d by a gap that scales with the type. */
+.masthead h1 .hash{letter-spacing:0;margin-right:.02em}
 .site-header nav a.nav-join{
   border:1px solid currentColor;
   padding:9px 12px;

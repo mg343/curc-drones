@@ -158,7 +158,15 @@ body:has(dialog[open]){overflow:hidden}
 @media print{.site-header nav,.hero-link,.involvement-links,.contact-dialog,.skip-link{display:none!important}html{scroll-behavior:auto}.hero{padding-top:10px}.hero-grid{grid-template-columns:1.2fr 1fr}.hero-figure img{height:330px}.hero-copy{min-height:0}.hero-status{margin-top:20px}.manifesto,.involvement{print-color-adjust:exact;-webkit-print-color-adjust:exact}.section-padding{break-inside:avoid}.system-layout{grid-template-columns:1fr 1.2fr}.discipline{padding:16px 0}.disciplines-note{font-size:16px}.site-footer{break-inside:avoid}}
 
 /* Requested copy cuts and minimal layout adjustments. */
-.site-header nav{margin-left:auto}
+.site-header{position:relative}
+.site-header nav{margin-left:auto;position:relative;z-index:2}
+.club-mark{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);line-height:0;z-index:1}
+.club-logo{display:block;height:48px;width:auto}
+@media(max-width:760px){.club-logo{height:40px}}
+@media(max-width:340px){
+  .club-lockup>span{display:none}
+  .club-logo{height:32px}
+}
 .masthead h1{font-size:27.2vw}
 .hero-copy{min-height:0}
 .manifesto-grid{padding-bottom:0}

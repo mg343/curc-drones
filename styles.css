@@ -174,3 +174,33 @@ body:has(dialog[open]){overflow:hidden}
   .section-label>span:only-child{text-align:left;max-width:none;font-size:inherit}
   .site-footer .footer-edition{grid-column:2}
 }
+
+/* Outline wordmark and boxed action, in the spirit of a hairline logotype. */
+.masthead h1{
+  color:transparent;
+  -webkit-text-stroke:clamp(1px,.14vw,2.25px) var(--ink);
+}
+.site-header nav a.nav-join{
+  border:1px solid currentColor;
+  padding:9px 12px;
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  line-height:1;
+  white-space:nowrap;
+  flex-shrink:0;
+}
+.site-header nav a.nav-join:after{display:none}
+.site-header nav a.nav-join:hover{
+  background:var(--ink);
+  color:var(--paper);
+}
+.site-header nav a.nav-join:hover span{transform:none}
+@media(max-width:760px){
+  .site-header nav a.nav-join{
+    padding:8px 10px;
+    font-size:10px;
+    letter-spacing:.1em;
+  }
+}

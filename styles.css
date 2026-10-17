@@ -220,3 +220,38 @@ body:has(dialog[open]){overflow:hidden}
     letter-spacing:.1em;
   }
 }
+
+/* Progress and updates: https://x.com/ColumbiaDrones */
+.nav-x span[aria-hidden]{margin-left:6px}
+.involvement-card.involvement-follow{
+  grid-column:1 / -1;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  column-gap:7.5%;
+  align-items:end;
+}
+.involvement-follow>.micro{grid-column:1;grid-row:1}
+.involvement-follow .card-title{grid-column:1;grid-row:2}
+.involvement-follow .card-description{
+  grid-column:2;
+  grid-row:1 / span 2;
+  align-self:end;
+  margin-top:0;
+  max-width:36ch;
+}
+.footer-x{text-align:center;line-height:1.45;letter-spacing:.08em;padding:8px 2px}
+.footer-x:hover{color:var(--blue);text-decoration:underline;text-underline-offset:3px}
+@media(min-width:761px){
+  .site-footer{display:grid;grid-template-columns:1fr auto 1fr;align-items:center}
+  .footer-brand{justify-self:start}
+  .footer-edition{justify-self:end}
+}
+@media(max-width:760px){
+  .nav-x{display:none}
+  .involvement-card.involvement-follow{grid-template-columns:1fr;align-items:start}
+  .involvement-follow .card-description{grid-column:1;grid-row:3;margin-top:7px;max-width:320px}
+  .site-footer>.footer-x{grid-column:1 / -1;grid-row:2;justify-self:start;text-align:left}
+}
+@media print{
+  .footer-x::after{content:"  " attr(href)}
+}

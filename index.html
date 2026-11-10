@@ -56,11 +56,11 @@
       <canvas class="deck-canvas" aria-hidden="true"></canvas>
       <div class="deck-copy">
         <h2 id="deck-title">America needs<br>more builders.</h2>
-        <p class="hero-deck serif">So we’re building the drones.</p>
-        <p class="deck-text">A Columbia student team designing an autonomous aircraft from the ground up: the frame, propellers, motor controllers, flight controller and radio. Everything that decides how it flies, we make.</p>
+        <p class="hero-deck serif">We’re building the drones.</p>
+        <p class="deck-text">#drones is a Columbia University student team designing autonomous aircraft from the ground up: the frame, propellers, motor controllers, flight controller and radio.</p>
         <a class="text-link" href="#aircraft">Take it apart <span aria-hidden="true">↘</span></a>
       </div>
-      <p class="fig micro" aria-hidden="true">FIG. 01 — AIRFRAME 01, 5-INCH CLASS. LIVE. <span class="fig-hint">IT FOLLOWS YOUR CURSOR.</span></p>
+      <p class="fig micro" aria-hidden="true">FIG. 01 — AIRFRAME 01, 5-INCH CLASS. LIVE.</p>
       <span class="wp pad" data-seg="a" data-i="0"><i class="micro">TAKEOFF</i></span>
     </section>
 
@@ -71,10 +71,11 @@
           <h2 id="idea-title">You can buy<br>a drone.<br><span class="serif">You can’t buy<br>the understanding.</span></h2>
           <div class="idea-copy">
             <p class="lead">A drone is the most compact way to learn the whole hardware stack at once.</p>
-            <p>One aircraft, six disciplines, and it only flies if every one of them works. We build the parts other teams buy because building them is the only way to understand them.</p>
+            <p>One aircraft, and it only flies if every discipline in it works. We build the parts other teams buy because building them is the only way to understand them.</p>
             <p>The country needs engineers who understand machines all the way down. That’s who we’re trying to become.</p>
           </div>
         </div>
+        <p class="stack-head micro"><span>AIRFRAME 01 — WHAT THIS BUILD COVERS</span><span>THE NEXT ONE WILL ASK FOR MORE</span></p>
         <ol class="stack-list">
           <li><span class="micro">01</span><h3>Structures</h3><p>Stiff under four motors of thrust. Light enough to fly.</p></li>
           <li><span class="micro">02</span><h3>Power</h3><p>~35 A per motor, switched off a 25.2 V pack.</p></li>
@@ -95,7 +96,6 @@
         <div class="content">
           <div class="build-heading">
             <h2 id="aircraft-title">Everything that<br>decides how it flies, <span class="serif">we build.</span></h2>
-            <p class="build-intro">Motors and batteries we buy, because building them teaches little and costs a lot. The rest we design. Scroll to take it apart.</p>
           </div>
         </div>
         <span class="wp pad" data-seg="a" data-i="4"><i class="micro">LAND — WP 03</i></span>
@@ -111,16 +111,16 @@
             <div class="card">
               <p class="micro step-num"><span>01 / 07</span><span class="tag built">IN-HOUSE · MECHANICAL</span></p>
               <h3>Frame</h3>
-              <p>We printed a batch of commercial 5-inch frames to learn what works. Now we’re modelling our own bottom plate and arms and testing filaments for strength against weight. Carbon-fibre casting is the fallback.</p>
-              <dl class="spec micro"><div><dt>CLASS</dt><dd>5-INCH</dd></div><div><dt>MOTOR MOUNT</dt><dd>16 × 16 MM, M3</dd></div><div><dt>LOOP</dt><dd>CAD → PRINT → BREAK</dd></div></dl>
+              <p>Our own 5-inch frame, designed from scratch: the bottom plate and arms are modelled in CAD around how load runs from the motors into the stack. Prototypes are printed and tested for strength against weight, and the final frame is cast in carbon fibre.</p>
+              <dl class="spec micro"><div><dt>CLASS</dt><dd>5-INCH</dd></div><div><dt>MOTOR MOUNT</dt><dd>16 × 16 MM, M3</dd></div><div><dt>PROCESS</dt><dd>CAD → PRINT → CARBON CAST</dd></div></dl>
             </div>
           </li>
           <li class="step" data-part="props">
             <div class="card">
               <p class="micro step-num"><span>02 / 07</span><span class="tag built">IN-HOUSE · MECHANICAL</span></p>
               <h3>Propellers</h3>
-              <p>Modelled in CAD and printed on the Makerspace SLS printers. The open questions are the ones that matter: two blades, three or four, and at what angle.</p>
-              <dl class="spec micro"><div><dt>DIAMETER</dt><dd>5 IN / 127 MM</dd></div><div><dt>PROCESS</dt><dd>SLS PRINT</dd></div><div><dt>STUDYING</dt><dd>BLADE COUNT, PITCH</dd></div></dl>
+              <p>Designed from the aerodynamics up and modelled in CAD. Before anything is printed, each design goes through simulation: FEA for how the blades bend and stress under load, and airflow modelling for how much thrust they actually make. The designs that hold up are printed on the Makerspace SLS printers and tested against the numbers.</p>
+              <dl class="spec micro"><div><dt>DIAMETER</dt><dd>5 IN / 127 MM</dd></div><div><dt>PROCESS</dt><dd>SLS PRINT</dd></div><div><dt>SIMULATION</dt><dd>FEA + AIRFLOW</dd></div></dl>
             </div>
           </li>
           <li class="step" data-part="motors">
@@ -135,7 +135,7 @@
             <div class="card">
               <p class="micro step-num"><span>04 / 07</span><span class="tag built">IN-HOUSE · ELECTRICAL</span></p>
               <h3>Motor controllers</h3>
-              <p>A microcontroller and a gate driver switching three half-bridges to spin a brushless motor. Laid out in Altium and proven on the bench before it becomes a board.</p>
+              <p>Our own ESCs (electronic speed controllers). A microcontroller and a gate driver switch three half-bridges in sequence to spin each brushless motor, timing the commutation off the motor’s back-EMF. Schematic and layout are done in Altium, and every circuit is proven on the bench before it becomes a custom PCB.</p>
               <dl class="spec micro"><div><dt>MCU</dt><dd>EFM8BB21</dd></div><div><dt>GATE DRIVER</dt><dd>FD6288Q</dd></div><div><dt>NOW</dt><dd>BENCH BRING-UP</dd></div></dl>
             </div>
           </li>
@@ -143,7 +143,7 @@
             <div class="card">
               <p class="micro step-num"><span>05 / 07</span><span class="tag built">IN-HOUSE · ELECTRICAL</span></p>
               <h3>Flight controller</h3>
-              <p>An ESP32-S3 reads a six-axis IMU and runs the attitude loop. The PID is simulated and tuned in MATLAB first, so the first flight isn’t the first test.</p>
+              <p>An ESP32-S3 reads the gyro and accelerometer on a six-axis IMU, fuses them into an estimate of which way the aircraft is pointing, and turns the error into four motor commands, hundreds of times a second. The PID is simulated and tuned in MATLAB first, so the first flight isn’t the first test.</p>
               <dl class="spec micro"><div><dt>MCU</dt><dd>ESP32-S3</dd></div><div><dt>IMU</dt><dd>ICM-42688-P</dd></div><div><dt>NOW</dt><dd>FIRST FIRMWARE</dd></div></dl>
             </div>
           </li>
@@ -151,7 +151,7 @@
             <div class="card">
               <p class="micro step-num"><span>06 / 07</span><span class="tag built">IN-HOUSE · ELECTRICAL</span></p>
               <h3>Radio</h3>
-              <p>Two 2.4 GHz transceivers: one on the aircraft, one in a handheld controller we’re building from scratch with gimbal sticks, a Li-ion pack and a printed shell.</p>
+              <p>Two 2.4 GHz transceivers: one on the aircraft, one in a handheld controller we’re building from scratch with gimbal sticks, a Li-ion pack and a printed shell. The packet format, channel addressing and a failsafe for signal loss are designed together with the flight controller.</p>
               <dl class="spec micro"><div><dt>LINK</dt><dd>NRF24L01+ PA+LNA</dd></div><div><dt>HANDHELD</dt><dd>ATMEGA32U4</dd></div><div><dt>NOW</dt><dd>PROTOTYPING</dd></div></dl>
             </div>
           </li>
@@ -159,7 +159,7 @@
             <div class="card">
               <p class="micro step-num"><span>07 / 07</span><span class="tag bought">OFF THE SHELF</span></p>
               <h3>Battery</h3>
-              <p>We chose 6S from day one, so adding a payload later doesn’t mean redesigning the power system.</p>
+              <p>A 6S pack, chosen from day one so that adding a payload later never means redesigning the power system.</p>
               <dl class="spec micro"><div><dt>PACK</dt><dd>6S 1100 MAH LIPO</dd></div><div><dt>MAX</dt><dd>25.2 V</dd></div><div><dt>PLUG</dt><dd>XT60</dd></div></dl>
             </div>
           </li>
@@ -183,31 +183,17 @@
           <p>Every Friday ends the same way: each workstream takes two minutes to show what it built, and the pieces get wired together.</p>
         </div>
         <div class="bus">
-          <p class="bus-head micro"><span>INTEGRATION — WEEKLY</span><span>LEAD: MIHIR GARIMELLA</span></p>
+          <p class="bus-head micro"><span>INTEGRATION — WEEKLY</span></p>
           <div class="bus-divs micro"><span>MECHANICAL — LEAD: NICHOLAS DEJUN SCACCO</span><span>ELECTRICAL</span></div>
           <ol class="nodes">
-            <li><div class="node"><span class="micro">M1</span><h3>Frame</h3><p>Arm and plate geometry, load paths, filament trials.</p></div></li>
-            <li><div class="node"><span class="micro">M2</span><h3>Props</h3><p>Blade count, pitch, the equations, SLS prints.</p></div></li>
+            <li><div class="node"><span class="micro">M1</span><h3>Frame</h3><p>Arm and plate geometry, load paths, prints, carbon casting.</p></div></li>
+            <li><div class="node"><span class="micro">M2</span><h3>Props</h3><p>Blade design, FEA and airflow sims, SLS prints.</p></div></li>
             <li><div class="node"><span class="micro">M3</span><h3>Accessories</h3><p>A servo camera-tilt mount and a self-opening landing box.</p></div></li>
             <li><div class="node"><span class="micro">E1</span><h3>Motor controllers</h3><p>ESC theory, schematic, layout.</p><p class="micro who">PRAKSHAB ADHIKARI</p></div></li>
             <li><div class="node"><span class="micro">E2</span><h3>Flight controller</h3><p>IMU bring-up, PID in simulation.</p><p class="micro who">VARSHA MAKKAPATI</p></div></li>
             <li><div class="node"><span class="micro">E3</span><h3>Radio</h3><p>Link, packet format, failsafe, handheld.</p><p class="micro who">ORLANDO PUTNAM-BAGLEY</p></div></li>
           </ol>
         </div>
-        <div class="lead-row">
-          <p class="micro">TEAM LEAD</p>
-          <p><strong>Mihir Garimella</strong> leads the team and its software and perception work. He’s been building drones for six years and started this team because Columbia had no home for aerial robotics.</p>
-        </div>
-      </div>
-      <span class="wp" data-seg="b" data-i="1"><i class="micro">WP 04</i></span>
-      <span class="wp" data-seg="b" data-i="2"></span>
-      <span class="wp" data-seg="b" data-i="3"></span>
-    </section>
-
-    <section id="log" class="log page-padding lane-right" aria-labelledby="log-title">
-      <div class="section-label micro"><span>04 / FLIGHT LOG</span><span>UPDATED NOV 2026</span></div>
-      <div class="content">
-        <h2 id="log-title">Day one was September 18.<br><span class="serif">Here’s the climb.</span></h2>
 
         <div class="profile" role="img" aria-label="Flight profile: first meeting on September 18, 2026; workstreams formed; first parts printed; size locked in October; first parts order on October 13; bench bring-up now; first controlled flight targeted for December; autonomy in spring 2027; competition in 2027–28.">
           <svg viewBox="0 0 1000 380" aria-hidden="true">
@@ -224,13 +210,14 @@
             <g class="pt done"><circle cx="130" cy="306" r="5"/><text x="120" y="282" text-anchor="end"><tspan class="d">SEP</tspan><tspan x="120" dy="14">Leads, Fridays</tspan></text></g>
             <g class="pt done"><circle cx="240" cy="280" r="5"/><text x="230" y="250" text-anchor="end"><tspan class="d">MTG 03</tspan><tspan x="230" dy="14">First parts printed</tspan></text></g>
             <g class="pt done"><circle cx="350" cy="250" r="5"/><text x="340" y="222" text-anchor="end"><tspan class="d">OCT</tspan><tspan x="340" dy="14">5-inch, 6S, 1750KV</tspan></text></g>
-            <g class="pt done"><circle cx="450" cy="228" r="5"/><text x="452" y="254"><tspan class="d">OCT 13</tspan><tspan x="452" dy="14">First order: $279.86</tspan></text></g>
+            <g class="pt done"><circle cx="450" cy="228" r="5"/><text x="452" y="254"><tspan class="d">OCT 13</tspan><tspan x="452" dy="14">First parts order</tspan></text></g>
             <g class="pt now"><circle class="ring" cx="560" cy="212" r="5"/><circle cx="560" cy="212" r="5"/><text x="550" y="186" text-anchor="end"><tspan class="d">NOW</tspan><tspan x="550" dy="14">Bench bring-up</tspan></text></g>
             <g class="pt next"><circle cx="690" cy="162" r="5"/><text x="690" y="200"><tspan class="d">DEC 2026</tspan><tspan x="690" dy="14">First controlled flight</tspan></text></g>
             <g class="pt next"><circle cx="830" cy="96" r="5"/><text x="830" y="134"><tspan class="d">SPRING 2027</tspan><tspan x="830" dy="14">Vision-based autonomy</tspan></text></g>
             <g class="pt next"><circle cx="965" cy="44" r="5"/><text x="955" y="24" text-anchor="end"><tspan class="d">2027–28 — COMPETE</tspan><tspan x="955" dy="14">IMAV · SUAS · cUASC · ICRA/IROS</tspan></text></g>
           </svg>
         </div>
+        <p class="fig-cap micro">FIG. 02 — FLIGHT LOG. DAY ONE WAS SEPTEMBER 18, 2026.</p>
 
         <div class="log-grid">
           <div class="support">
@@ -239,32 +226,33 @@
             <p>Drones scale with whatever funding exists. Parts money, fabrication time or a second pair of experienced eyes all go straight into the aircraft, and you’ll see exactly where.</p>
             <a class="text-link" href="mailto:mihir.garimella@columbia.edu?subject=Supporting%20CURC%20Drones">Support the build <span aria-hidden="true">↗</span></a>
           </div>
-          <figure class="receipt" aria-label="Receipt for parts order 001, totalling $279.86">
-            <p class="r-head">CURC DRONES<br>PARTS ORDER #001<br>10/13/2026 — 10/14/2026</p>
+          <figure class="receipt" aria-label="Receipt for parts ordered in fall 2026, totalling $744.86">
+            <p class="r-head">CURC DRONES<br>PARTS ORDERED<br>FALL 2026</p>
             <ul>
-              <li><span>VELOX V2207 V3 ×5</span><i></i><span>81.50</span></li>
-              <li><span>ICM-42688-P IMU</span><i></i><span>36.12</span></li>
-              <li><span>18650 CELLS ×2</span><i></i><span>35.96</span></li>
-              <li><span>ITSYBITSY 32U4</span><i></i><span>31.84</span></li>
-              <li><span>ESP32-S3 DEVKIT ×2</span><i></i><span>30.00</span></li>
-              <li><span>6S 1100MAH ×2</span><i></i><span>26.99</span></li>
-              <li><span>NRF24L01+ PAIR</span><i></i><span>15.49</span></li>
-              <li><span>18650 HOLDER</span><i></i><span>10.62</span></li>
-              <li><span>GIMBAL POTS ×2</span><i></i><span>7.26</span></li>
-              <li><span>THUMBSTICK</span><i></i><span>4.08</span></li>
+              <li><span>VELOX V2207 V3 ×15</span><i></i><span>244.50</span></li>
+              <li><span>6S 1100MAH ×8</span><i></i><span>179.51</span></li>
+              <li><span>ICM-42688-P IMU ×2</span><i></i><span>72.24</span></li>
+              <li><span>18650 CELLS ×4</span><i></i><span>71.92</span></li>
+              <li><span>ESP32-S3 DEVKIT ×4</span><i></i><span>60.00</span></li>
+              <li><span>ITSYBITSY 32U4 ×2</span><i></i><span>41.79</span></li>
+              <li><span>NRF24L01+ PAIR ×2</span><i></i><span>30.98</span></li>
+              <li><span>18650 HOLDER ×2</span><i></i><span>21.24</span></li>
+              <li><span>GIMBAL POTS ×4</span><i></i><span>14.52</span></li>
+              <li><span>THUMBSTICK ×2</span><i></i><span>8.16</span></li>
             </ul>
-            <p class="r-total"><span>TOTAL</span><span>$279.86</span></p>
+            <p class="r-total"><span>TOTAL</span><span>$744.86</span></p>
             <p class="r-foot">NEXT: FETS, BOOTSTRAP,<br>CURRENT SENSE<br>* THANK YOU FOR BUILDING *</p>
           </figure>
         </div>
       </div>
-      <span class="wp" data-seg="b" data-i="4"><i class="micro">WP 05</i></span>
-      <span class="wp" data-seg="b" data-i="5"></span>
-      <span class="wp" data-seg="b" data-i="6"></span>
+      <span class="wp" data-seg="b" data-i="1"><i class="micro">WP 04</i></span>
+      <span class="wp" data-seg="b" data-i="2"></span>
+      <span class="wp" data-seg="b" data-i="3"></span>
+      <span class="wp" data-seg="b" data-i="4"></span>
     </section>
 
-    <section id="get-involved" class="join page-padding lane-left" aria-labelledby="join-title">
-      <div class="section-label micro"><span>05 / GET INVOLVED</span><span>NO EXPERIENCE REQUIRED</span></div>
+    <section id="get-involved" class="join page-padding lane-right" aria-labelledby="join-title">
+      <div class="section-label micro"><span>04 / GET INVOLVED</span><span>NO EXPERIENCE REQUIRED</span></div>
       <div class="content">
         <h2 id="join-title">Build<br>something <span class="serif">real.</span></h2>
         <div class="join-grid">
@@ -278,8 +266,8 @@
         </div>
         <a class="join-mail" href="mailto:mihir.garimella@columbia.edu">mihir.garimella@columbia.edu <span aria-hidden="true">↗</span></a>
       </div>
-      <span class="wp" data-seg="b" data-i="7"><i class="micro">WP 06</i></span>
-      <span class="wp pad" data-seg="b" data-i="8"><i class="micro">LAND — HOME</i></span>
+      <span class="wp" data-seg="b" data-i="5"><i class="micro">WP 05</i></span>
+      <span class="wp pad" data-seg="b" data-i="6"><i class="micro">LAND — HOME</i></span>
     </section>
   </main>
 

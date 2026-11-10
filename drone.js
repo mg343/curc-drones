@@ -80,7 +80,7 @@
       box(-4, 18.6, -31.5, 4, 21.5, -26), // USB
     ];
     const radio = [box(-8, 34.5, -52, 8, 36.1, -26), cyl(0, -46, 36.1, 41, 3.6, 12), cyl(0, -46, 41, 86, 2.8, 12)];
-    const battery = [box(-17, 34.5, -22, 17, 72, 52), box(-18.5, 34.5, 12, 18.5, 73.2, 18)];
+    const battery = [box(-17, 34.5, -22, 17, 72, 52)];
     const hubs = MOTORS.map(([x, z]) => cyl(x, z, 27, 32, 5.5, 16));
 
     return [
@@ -353,7 +353,7 @@
     { part: 'motors', title: 'MOTOR', sub: 'VELOX V2207 · 1750KV' },
     { part: 'battery', title: 'BATTERY', sub: '6S · 1100 MAH' },
     { part: 'radio', title: 'RADIO', sub: 'NRF24L01+ · 2.4 GHZ' },
-    { part: 'frame', title: 'FRAME', sub: 'PRINTED · 5-INCH CLASS' },
+    { part: 'frame', title: 'FRAME', sub: 'CARBON FIBRE · 5-INCH CLASS' },
   ];
 
   const deck = document.querySelector('.deck');
@@ -426,7 +426,7 @@
     { part: 'fc', title: 'FLIGHT CONTROLLER', sub: 'IN-HOUSE · ESP32-S3' },
     { part: 'props', title: 'PROPELLERS', sub: 'IN-HOUSE · 5 IN SLS' },
     { part: 'esc', title: 'MOTOR CONTROLLERS', sub: 'IN-HOUSE · EFM8 + FD6288Q' },
-    { part: 'frame', title: 'FRAME', sub: 'IN-HOUSE · PRINTED' },
+    { part: 'frame', title: 'FRAME', sub: 'IN-HOUSE · CARBON CAST' },
     { part: 'motors', title: 'MOTORS', sub: 'BOUGHT · V2207 1750KV' },
   ];
 

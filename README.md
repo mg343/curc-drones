@@ -7,11 +7,10 @@ Open index.html with styles.css, drone.js, script.js and assets/ alongside it. T
 1. **Masthead.** The rotor lockup, the CURC logo and the hollow #drones wordmark, unchanged from the pushed site.
 2. **FIG. 01.** Airframe 01 drawn live as a technical drawing in drone.js: a 3D model built in millimetres from the real parts (5-inch props, Velox V2207 motors, 30.5 mm stack, ESP32-S3, nRF24 radio, 6S pack). Props spin, it hovers, and it drifts toward the cursor. Leader-line callouts name the parts.
 3. **The flight path** (script.js). A small drone flies a dashed route through the empty lanes beside each section as you scroll, landing on helipads. Waypoints are the `.wp` elements in index.html, placed in CSS, so moving the route is a CSS change. Hidden below 900 px.
-4. **01 The idea.** Why drones: the six disciplines.
+4. **01 The idea.** Why drones, and the six disciplines Airframe 01 covers.
 5. **02 The aircraft.** Sticky exploded drawing. Each step card pulls one subsystem out and colours it blue if it's designed in-house.
-6. **03 The team.** Six workstreams hanging off a weekly integration bus, with leads.
-7. **04 Flight log.** A flight-profile chart of the timeline, plus the first parts order as a receipt.
-8. **05 Get involved.** Fridays 3–5 PM in the Makerspace, Slack and email. Small drones cross the footer.
+6. **03 The team.** Six workstreams hanging off a weekly integration bus, then the flight log (FIG. 02, a flight-profile chart of the timeline) and the parts ordered so far as a receipt.
+7. **04 Get involved.** Fridays 3–5 PM in the Makerspace, Slack and email. Small drones cross the footer.
 
 ## Keeping it current
 

@@ -3,12 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#b9d9eb">
-  <meta name="description" content="Drones is a Columbia University Robotics Club team learning to build an aircraft from the ground up. Mechanical design, electronics, software, and controls. One machine. The whole system.">
+  <meta name="theme-color" content="#f7fbff">
+  <meta name="description" content="Drones is a Columbia University Robotics Club team building an autonomous aircraft from the ground up: frame, propellers, motor controllers, flight controller and radio.">
   <title>Drones — Columbia Robotics</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23b9d9eb'/%3E%3Ctext x='10' y='49' font-family='Arial,sans-serif' font-weight='700' font-size='55' fill='%23102542'%3Ed%3C/text%3E%3C/svg%3E">
   <link rel="me" href="https://x.com/ColumbiaDrones">
+  <script>document.documentElement.classList.add('js')</script>
   <link rel="stylesheet" href="styles.css">
+  <script src="drone.js" defer></script>
   <script src="script.js" defer></script>
 </head>
 <body>
@@ -28,91 +30,254 @@
   </header>
 
   <main id="main">
+    <svg class="flightpath" aria-hidden="true"></svg>
+    <div class="pathdrone" aria-hidden="true">
+      <svg viewBox="-34 -34 68 68">
+        <path class="arm" d="M-17-17 17 17M-17 17 17-17"/>
+        <g class="rotor" transform="translate(-17 -17)"><circle class="disc" r="11"/><path class="blade" d="M-10 0H10"/></g>
+        <g class="rotor ccw" transform="translate(17 -17)"><circle class="disc" r="11"/><path class="blade" d="M-10 0H10"/></g>
+        <g class="rotor ccw" transform="translate(-17 17)"><circle class="disc" r="11"/><path class="blade" d="M-10 0H10"/></g>
+        <g class="rotor" transform="translate(17 17)"><circle class="disc" r="11"/><path class="blade" d="M-10 0H10"/></g>
+        <rect class="body" x="-6" y="-9" width="12" height="18" rx="1.5"/>
+        <path class="nose" d="M0-14-3.5-9.5h7Z"/>
+      </svg>
+    </div>
+
     <section class="hero page-padding" id="top" aria-labelledby="site-title">
       <div class="masthead">
         <h1 id="site-title" aria-label="#drones"><span class="hash">#</span><span class="word">drones</span></h1>
         <span class="masthead-index micro" aria-hidden="true">[ D ]</span>
       </div>
-      <div class="hero-grid">
-        <div class="hero-copy">
-          <h2>America needs<br>more builders.</h2>
-          <p class="hero-deck">We’re building the drones.</p>
-          <p class="hero-description">We’re a student team building an aircraft from the ground up.</p>
-          <a class="text-link hero-link" href="#manifesto">The case for building <span aria-hidden="true">↘</span></a>
-        </div>
-        <figure class="hero-figure">
-          <div class="photo-wrap">
-            <img src="assets/how-to-fly.webp" alt="A helmeted pilot in a cockpit reading a book titled ‘HOW TO FLY’." width="660" height="890" fetchpriority="high">
-            <span class="photo-index micro" aria-hidden="true">FIG. 01</span>
-          </div>
-        </figure>
-      </div>
+      <div class="masthead-rule micro"><span>COLUMBIA UNIVERSITY ROBOTICS CLUB</span><span>AIRFRAME 01 — IN BUILD</span><span>NEW YORK CITY — EST. 2026</span></div>
     </section>
 
-    <section id="manifesto" class="manifesto section-padding page-padding" aria-labelledby="manifesto-title">
-      <div class="section-label micro"><span>01 / THE IDEA</span></div>
-      <div class="manifesto-grid">
-        <h2 id="manifesto-title">You can buy<br>a drone.<br><span class="serif">You can’t buy<br>the understanding.</span></h2>
-        <div class="manifesto-copy">
-          <p class="manifesto-lead">America’s ability to build things starts with people who know how.</p>
-          <p>Factories matter. Supply chains matter. So do the people who can design, test, repair, and improve the machines. We want to become those people.</p>
-          <p>A drone is our starting point. Mechanical design, electronics, software, and controls all have to work together. The aircraft is an honest test of whether we understand the connections.</p>
-          <p>“From scratch” doesn’t mean making every component ourselves. It means taking responsibility for the design, knowing what we’re using, and understanding how to change it.</p>
-          <p class="manifesto-end">We’re early. There’s a lot to learn.<br>That’s a reason to start.</p>
-        </div>
+    <!-- FIG. 01: the aircraft we're building, drawn live -->
+    <section class="deck page-padding" aria-labelledby="deck-title">
+      <canvas class="deck-canvas" aria-hidden="true"></canvas>
+      <div class="deck-copy">
+        <h2 id="deck-title">America needs<br>more builders.</h2>
+        <p class="hero-deck serif">We’re building the drones.</p>
+        <p class="deck-text">#drones is a Columbia University student team designing autonomous aircraft from the ground up: the frame, propellers, motor controllers, flight controller and radio.</p>
+        <a class="text-link" href="#aircraft">Take it apart <span aria-hidden="true">↘</span></a>
       </div>
+      <p class="fig micro" aria-hidden="true">FIG. 01 — AIRFRAME 01, 5-INCH CLASS. LIVE.</p>
+      <span class="wp pad" data-seg="a" data-i="0"><i class="micro">TAKEOFF</i></span>
     </section>
 
-    <section id="build" class="build section-padding page-padding" aria-labelledby="build-title">
-      <div class="section-label micro"><span>02 / THE BUILD</span></div>
-      <div class="build-heading"><h2 id="build-title">Everything<br>is connected.</h2><div class="build-intro"><p>Four disciplines. One machine that has to work in the real world.</p></div></div>
-      <div class="system-layout">
-        <div class="disciplines" role="tablist" aria-label="Explore the build" aria-orientation="vertical">
-          <button class="discipline is-active" id="tab-mechanical" role="tab" aria-selected="true" aria-controls="panel-mechanical" tabindex="0" data-system="mechanical"><span class="discipline-num micro">01</span><span class="discipline-text">Mechanical</span><span class="discipline-arrow" aria-hidden="true">↗</span></button>
-          <button class="discipline" id="tab-electrical" role="tab" aria-selected="false" aria-controls="panel-electrical" tabindex="-1" data-system="electrical"><span class="discipline-num micro">02</span><span class="discipline-text">Electrical</span><span class="discipline-arrow" aria-hidden="true">↗</span></button>
-          <button class="discipline" id="tab-software" role="tab" aria-selected="false" aria-controls="panel-software" tabindex="-1" data-system="software"><span class="discipline-num micro">03</span><span class="discipline-text">Software &amp; perception</span><span class="discipline-arrow" aria-hidden="true">↗</span></button>
-          <button class="discipline" id="tab-controls" role="tab" aria-selected="false" aria-controls="panel-controls" tabindex="-1" data-system="controls"><span class="discipline-num micro">04</span><span class="discipline-text">Controls</span><span class="discipline-arrow" aria-hidden="true">↗</span></button>
-        </div>
-        <div class="system-study" data-active="mechanical">
-          <div class="study-topline micro"><span>ANATOMY OF A BUILD</span><span>ILLUSTRATIVE / NOT TO SCALE</span></div>
-          <div class="system-visual" aria-hidden="true">
-            <svg class="aircraft-study" viewBox="0 0 560 300" fill="none">
-              <g class="guide-lines"><path d="M280 18V282M38 150H522"/><path d="M100 31h22m-11-11v22M438 31h22m-11-11v22M100 270h22m-11-11v22M438 270h22m-11-11v22"/></g>
-              <g class="frame-group">
-                <path class="frame-fill" d="m160 57 91 68h58l91-68 13 17-92 76 92 76-13 17-91-68h-58l-91 68-13-17 92-76-92-76Z"/>
-                <path d="m160 57 91 68h58l91-68 13 17-92 76 92 76-13 17-91-68h-58l-91 68-13-17 92-76-92-76Z"/>
-                <circle cx="151" cy="65" r="51"/><circle cx="409" cy="65" r="51"/><circle cx="151" cy="235" r="51"/><circle cx="409" cy="235" r="51"/>
-                <g class="propeller"><path d="M151 65c-5-25-9-40-18-38-8 3-2 19 18 38 5 25 9 40 18 38 8-3 2-19-18-38Z"/><circle cx="151" cy="65" r="5"/></g>
-                <g class="propeller"><path d="M409 65c25-5 40-9 38-18-3-8-19-2-38 18-25 5-40 9-38 18 3 8 19 2 38-18Z"/><circle cx="409" cy="65" r="5"/></g>
-                <g class="propeller"><path d="M151 235c25-5 40-9 38-18-3-8-19-2-38 18-25 5-40 9-38 18 3 8 19 2 38-18Z"/><circle cx="151" cy="235" r="5"/></g>
-                <g class="propeller"><path d="M409 235c-5-25-9-40-18-38-8 3-2 19 18 38 5 25 9 40 18 38 8-3 2-19-18-38Z"/><circle cx="409" cy="235" r="5"/></g>
-              </g>
-              <g class="electronics-group"><rect class="board-fill" x="250" y="116" width="60" height="68" rx="1"/><rect x="250" y="116" width="60" height="68" rx="1"/><rect x="269" y="137" width="22" height="26"/><path d="M263 142h6m-6 6h6m-6 6h6m-6 6h6m22-18h6m-6 6h6m-6 6h6m-6 6h6M274 131v6m6-6v6m6-6v6m-12 26v6m6-6v6m6-6v6"/><circle cx="256" cy="122" r="2"/><circle cx="304" cy="122" r="2"/><circle cx="256" cy="178" r="2"/><circle cx="304" cy="178" r="2"/><path class="wires" d="m250 126-87-54m147 54 87-54m-147 102-87 54m147-54 87 54"/></g>
-              <g class="software-group"><circle cx="280" cy="101" r="5"/><path d="M268 91q12-13 24 0M260 82q20-22 40 0M252 73q28-32 56 0"/><path class="sensor-line" d="M280 106v27"/></g>
-              <g class="controls-group"><path d="M87 57a65 65 0 0 1 113-34m-13-3 13 3-2-13M473 73a65 65 0 0 1-113 34m13 3-13-3 2 13M87 243a65 65 0 0 0 113 34m-13 3 13-3-2 13M473 227a65 65 0 0 0-113-34m13-3-13 3 2-13"/></g>
-            </svg>
-          </div>
-          <div class="study-panels">
-          <div class="panel" id="panel-mechanical" role="tabpanel" aria-labelledby="tab-mechanical" tabindex="0"><div class="panel-heading"><h3>The physical part.</h3><span class="micro">01 / MECHANICAL</span></div><p>The frame, the propulsion, the weight, the vibration. Learn to design the structure everything else depends on.</p><div class="panel-terms micro"><span>AIRFRAME</span><span>PROPULSION</span><span>FABRICATION</span></div></div>
-          <div class="panel" id="panel-electrical" role="tabpanel" aria-labelledby="tab-electrical" tabindex="0" hidden><div class="panel-heading"><h3>Power. Sense. Connect.</h3><span class="micro">02 / ELECTRICAL</span></div><p>The flight controller, the sensors, the power system. Understand the electronics that turn separate components into one aircraft.</p><div class="panel-terms micro"><span>PCB DESIGN</span><span>SENSORS</span><span>POWER SYSTEM</span></div></div>
-          <div class="panel" id="panel-software" role="tabpanel" aria-labelledby="tab-software" tabindex="0" hidden><div class="panel-heading"><h3>Make sense of the world.</h3><span class="micro">03 / SOFTWARE</span></div><p>Read the sensors. Estimate the aircraft’s state. Explore how vision can help it understand where it is and what’s around it.</p><div class="panel-terms micro"><span>SENSOR DRIVERS</span><span>STATE ESTIMATION</span><span>COMPUTER VISION</span></div></div>
-          <div class="panel" id="panel-controls" role="tabpanel" aria-labelledby="tab-controls" tabindex="0" hidden><div class="panel-heading"><h3>Close the loop.</h3><span class="micro">04 / CONTROLS</span></div><p>Connect what the aircraft should do with what it actually does. Work through control loops, motor commands, and integrate.</p><div class="panel-terms micro"><span>CONTROL LOOPS</span><span>MOTOR COMMANDS</span><span>INTEGRATION</span></div></div>
+    <section id="idea" class="idea page-padding lane-right" aria-labelledby="idea-title">
+      <div class="section-label micro"><span>01 / THE IDEA</span><span>WHY DRONES</span></div>
+      <div class="content">
+        <div class="idea-grid">
+          <h2 id="idea-title">You can buy<br>a drone.<br><span class="serif">You can’t buy<br>the understanding.</span></h2>
+          <div class="idea-copy">
+            <p class="lead">A drone is the most compact way to learn the whole hardware stack at once.</p>
+            <p>One aircraft, and it only flies if every discipline in it works. We build the parts other teams buy because building them is the only way to understand them.</p>
+            <p>The country needs engineers who understand machines all the way down. That’s who we’re trying to become.</p>
           </div>
         </div>
+        <p class="stack-head micro"><span>AIRFRAME 01 — WHAT THIS BUILD COVERS</span><span>THE NEXT ONE WILL ASK FOR MORE</span></p>
+        <ol class="stack-list">
+          <li><span class="micro">01</span><h3>Structures</h3><p>Stiff under four motors of thrust. Light enough to fly.</p></li>
+          <li><span class="micro">02</span><h3>Power</h3><p>~35 A per motor, switched off a 25.2 V pack.</p></li>
+          <li><span class="micro">03</span><h3>Embedded</h3><p>Firmware that reads an IMU and closes the loop.</p></li>
+          <li><span class="micro">04</span><h3>RF</h3><p>A 2.4 GHz link, handheld controller included.</p></li>
+          <li><span class="micro">05</span><h3>Controls</h3><p>PID, simulated in MATLAB before it flies.</p></li>
+          <li><span class="micro">06</span><h3>Perception</h3><p>Vision-based state estimation, so it flies itself.</p></li>
+        </ol>
       </div>
+      <span class="wp" data-seg="a" data-i="1"><i class="micro">WP 01</i></span>
+      <span class="wp" data-seg="a" data-i="2"></span>
+      <span class="wp" data-seg="a" data-i="3"><i class="micro">WP 02</i></span>
     </section>
 
-    <section id="get-involved" class="involvement section-padding page-padding" aria-labelledby="involvement-title">
-      <div class="section-label micro"><span>03 / GET INVOLVED</span></div>
-      <div class="involvement-grid"><h2 id="involvement-title">Build<br>something <span class="serif">real.</span></h2><div class="involvement-copy"><p>You don’t need to arrive as an expert.<br>You do need to want to figure things out.</p><p>Bring your curiosity. Learn an unfamiliar part of the system. Work through it with people who care about making it work.</p></div></div>
-      <div class="involvement-links">
-        <a class="involvement-card" href="mailto:mihir.garimella@columbia.edu"><span class="micro">FOR STUDENTS</span><span class="card-title">Join the team <span aria-hidden="true">↗</span></span><span class="card-description">Find your way into the whole system.</span></a>
-        <a class="involvement-card" href="mailto:mihir.garimella@columbia.edu"><span class="micro">FOR PARTNERS &amp; MENTORS</span><span class="card-title">Support the build <span aria-hidden="true">↗</span></span><span class="card-description">Parts funding. Fabrication. A second pair of experienced eyes.</span></a>
-        <a class="involvement-card involvement-follow" href="https://x.com/ColumbiaDrones" target="_blank" rel="noopener noreferrer" aria-label="Follow on X, opens in a new tab"><span class="micro">UPDATES</span><span class="card-title">Follow on X <span aria-hidden="true">↗</span></span><span class="card-description">Progress from the build, posted as we go.</span></a>
+    <section id="aircraft" class="aircraft" aria-labelledby="aircraft-title">
+      <div class="aircraft-head page-padding lane-right">
+        <div class="section-label micro"><span>02 / THE AIRCRAFT</span><span>AIRFRAME 01</span></div>
+        <div class="content">
+          <div class="build-heading">
+            <h2 id="aircraft-title">Everything that<br>decides how it flies, <span class="serif">we build.</span></h2>
+          </div>
+        </div>
+        <span class="wp pad" data-seg="a" data-i="4"><i class="micro">LAND — WP 03</i></span>
       </div>
-      <footer class="site-footer"><a href="#top" class="footer-brand" aria-label="#drones — back to top">#drones<span aria-hidden="true">↗</span></a><a class="footer-x micro" href="https://x.com/ColumbiaDrones" target="_blank" rel="noopener noreferrer" aria-label="Follow the build on X, opens in a new tab">FOLLOW THE BUILD<br>ON X <span aria-hidden="true">↗</span></a><span class="micro footer-edition">NEW YORK CITY<br>EST. 2026</span></footer>
+
+      <div class="ab">
+        <div class="stage">
+          <canvas class="air-canvas" role="img" aria-label="A 3D line drawing of Airframe 01, a 5-inch quadcopter, separating into its parts as you scroll"></canvas>
+          <p class="legend micro" aria-hidden="true"><span class="k-built">DESIGNED IN-HOUSE</span><span class="k-bought">OFF THE SHELF</span></p>
+        </div>
+        <ol class="steps">
+          <li class="step" data-part="frame">
+            <div class="card">
+              <p class="micro step-num"><span>01 / 07</span><span class="tag built">IN-HOUSE · MECHANICAL</span></p>
+              <h3>Frame</h3>
+              <p>Our own 5-inch frame, designed from scratch: the bottom plate and arms are modelled in CAD around how load runs from the motors into the stack. Prototypes are printed and tested for strength against weight, and the final frame is cast in carbon fibre.</p>
+              <dl class="spec micro"><div><dt>CLASS</dt><dd>5-INCH</dd></div><div><dt>MOTOR MOUNT</dt><dd>16 × 16 MM, M3</dd></div><div><dt>PROCESS</dt><dd>CAD → PRINT → CARBON CAST</dd></div></dl>
+            </div>
+          </li>
+          <li class="step" data-part="props">
+            <div class="card">
+              <p class="micro step-num"><span>02 / 07</span><span class="tag built">IN-HOUSE · MECHANICAL</span></p>
+              <h3>Propellers</h3>
+              <p>Designed from the aerodynamics up and modelled in CAD. Before anything is printed, each design goes through simulation: FEA for how the blades bend and stress under load, and airflow modelling for how much thrust they actually make. The designs that hold up are printed on the Makerspace SLS printers and tested against the numbers.</p>
+              <dl class="spec micro"><div><dt>DIAMETER</dt><dd>5 IN / 127 MM</dd></div><div><dt>PROCESS</dt><dd>SLS PRINT</dd></div><div><dt>SIMULATION</dt><dd>FEA + AIRFLOW</dd></div></dl>
+            </div>
+          </li>
+          <li class="step" data-part="motors">
+            <div class="card">
+              <p class="micro step-num"><span>03 / 07</span><span class="tag bought">OFF THE SHELF</span></p>
+              <h3>Motors</h3>
+              <p>The one spinning part we buy. Winding motors wouldn’t teach much. Designing the electronics that drive them does.</p>
+              <dl class="spec micro"><div><dt>MODEL</dt><dd>VELOX V2207 V3</dd></div><div><dt>KV</dt><dd>1750</dd></div><div><dt>PEAK</dt><dd>~35 A ON 6S</dd></div></dl>
+            </div>
+          </li>
+          <li class="step" data-part="esc">
+            <div class="card">
+              <p class="micro step-num"><span>04 / 07</span><span class="tag built">IN-HOUSE · ELECTRICAL</span></p>
+              <h3>Motor controllers</h3>
+              <p>Our own ESCs (electronic speed controllers). A microcontroller and a gate driver switch three half-bridges in sequence to spin each brushless motor, timing the commutation off the motor’s back-EMF. Schematic and layout are done in Altium, and every circuit is proven on the bench before it becomes a custom PCB.</p>
+              <dl class="spec micro"><div><dt>MCU</dt><dd>EFM8BB21</dd></div><div><dt>GATE DRIVER</dt><dd>FD6288Q</dd></div><div><dt>NOW</dt><dd>BENCH BRING-UP</dd></div></dl>
+            </div>
+          </li>
+          <li class="step" data-part="fc">
+            <div class="card">
+              <p class="micro step-num"><span>05 / 07</span><span class="tag built">IN-HOUSE · ELECTRICAL</span></p>
+              <h3>Flight controller</h3>
+              <p>An ESP32-S3 reads the gyro and accelerometer on a six-axis IMU, fuses them into an estimate of which way the aircraft is pointing, and turns the error into four motor commands, hundreds of times a second. The PID is simulated and tuned in MATLAB first, so the first flight isn’t the first test.</p>
+              <dl class="spec micro"><div><dt>MCU</dt><dd>ESP32-S3</dd></div><div><dt>IMU</dt><dd>ICM-42688-P</dd></div><div><dt>NOW</dt><dd>FIRST FIRMWARE</dd></div></dl>
+            </div>
+          </li>
+          <li class="step" data-part="radio">
+            <div class="card">
+              <p class="micro step-num"><span>06 / 07</span><span class="tag built">IN-HOUSE · ELECTRICAL</span></p>
+              <h3>Radio</h3>
+              <p>Two 2.4 GHz transceivers: one on the aircraft, one in a handheld controller we’re building from scratch with gimbal sticks, a Li-ion pack and a printed shell. The packet format, channel addressing and a failsafe for signal loss are designed together with the flight controller.</p>
+              <dl class="spec micro"><div><dt>LINK</dt><dd>NRF24L01+ PA+LNA</dd></div><div><dt>HANDHELD</dt><dd>ATMEGA32U4</dd></div><div><dt>NOW</dt><dd>PROTOTYPING</dd></div></dl>
+            </div>
+          </li>
+          <li class="step" data-part="battery">
+            <div class="card">
+              <p class="micro step-num"><span>07 / 07</span><span class="tag bought">OFF THE SHELF</span></p>
+              <h3>Battery</h3>
+              <p>A 6S pack, chosen from day one so that adding a payload later never means redesigning the power system.</p>
+              <dl class="spec micro"><div><dt>PACK</dt><dd>6S 1100 MAH LIPO</dd></div><div><dt>MAX</dt><dd>25.2 V</dd></div><div><dt>PLUG</dt><dd>XT60</dd></div></dl>
+            </div>
+          </li>
+          <li class="step" data-part="">
+            <div class="card">
+              <p class="micro step-num"><span>NEXT</span></p>
+              <h3>Then it has to <span class="serif">fly.</span></h3>
+              <p>A first controlled flight is the target for this semester. Autonomy comes next.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+      <span class="wp pad" data-seg="b" data-i="0"><i class="micro">TAKEOFF</i></span>
+    </section>
+
+    <section id="team" class="teams page-padding lane-left" aria-labelledby="team-title">
+      <div class="section-label micro"><span>03 / THE TEAM</span><span>FRIDAYS 3–5 PM — MAKERSPACE</span></div>
+      <div class="content">
+        <div class="teams-intro">
+          <h2 id="team-title">Six workstreams.<br><span class="serif">One aircraft.</span></h2>
+          <p>Every Friday ends the same way: each workstream takes two minutes to show what it built, and the pieces get wired together.</p>
+        </div>
+        <div class="bus">
+          <p class="bus-head micro"><span>INTEGRATION — WEEKLY</span></p>
+          <div class="bus-divs micro"><span>MECHANICAL — LEAD: NICHOLAS DEJUN SCACCO</span><span>ELECTRICAL</span></div>
+          <ol class="nodes">
+            <li><div class="node"><span class="micro">M1</span><h3>Frame</h3><p>Arm and plate geometry, load paths, prints, carbon casting.</p></div></li>
+            <li><div class="node"><span class="micro">M2</span><h3>Props</h3><p>Blade design, FEA and airflow sims, SLS prints.</p></div></li>
+            <li><div class="node"><span class="micro">M3</span><h3>Accessories</h3><p>A servo camera-tilt mount and a self-opening landing box.</p></div></li>
+            <li><div class="node"><span class="micro">E1</span><h3>Motor controllers</h3><p>ESC theory, schematic, layout.</p><p class="micro who">PRAKSHAB ADHIKARI</p></div></li>
+            <li><div class="node"><span class="micro">E2</span><h3>Flight controller</h3><p>IMU bring-up, PID in simulation.</p><p class="micro who">VARSHA MAKKAPATI</p></div></li>
+            <li><div class="node"><span class="micro">E3</span><h3>Radio</h3><p>Link, packet format, failsafe, handheld.</p><p class="micro who">ORLANDO PUTNAM-BAGLEY</p></div></li>
+          </ol>
+        </div>
+
+        <div class="profile" role="img" aria-label="Flight profile: first meeting on September 18, 2026; workstreams formed; first parts printed; size locked in October; first parts order on October 13; bench bring-up now; first controlled flight targeted for December; autonomy in spring 2027; competition in 2027–28.">
+          <svg viewBox="0 0 1000 380" aria-hidden="true">
+            <defs><pattern id="hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0 0V8" class="hatch"/></pattern></defs>
+            <rect x="0" y="330" width="1000" height="14" fill="url(#hatch)"/>
+            <path class="gnd" d="M0 330H1000"/>
+            <g class="alt micro-svg"><path d="M0 250H1000M0 170H1000M0 90H1000"/></g>
+            <text class="axis" x="996" y="245" text-anchor="end">BENCH</text>
+            <text class="axis" x="996" y="165" text-anchor="end">FLIGHT</text>
+            <text class="axis" x="996" y="85" text-anchor="end">AUTONOMY</text>
+            <path class="flown" d="M30 330C80 330 90 318 130 306S210 290 240 280 330 262 350 250 430 236 450 228 530 218 560 212"/>
+            <path class="plan" d="M560 212C620 200 650 180 690 162S790 112 830 96 920 60 965 44"/>
+            <g class="pt done"><circle cx="30" cy="330" r="5"/><text x="30" y="360"><tspan class="d">SEP 18</tspan><tspan x="30" dy="14">First meeting. 11 people.</tspan></text></g>
+            <g class="pt done"><circle cx="130" cy="306" r="5"/><text x="120" y="282" text-anchor="end"><tspan class="d">SEP</tspan><tspan x="120" dy="14">Leads, Fridays</tspan></text></g>
+            <g class="pt done"><circle cx="240" cy="280" r="5"/><text x="230" y="250" text-anchor="end"><tspan class="d">MTG 03</tspan><tspan x="230" dy="14">First parts printed</tspan></text></g>
+            <g class="pt done"><circle cx="350" cy="250" r="5"/><text x="340" y="222" text-anchor="end"><tspan class="d">OCT</tspan><tspan x="340" dy="14">5-inch, 6S, 1750KV</tspan></text></g>
+            <g class="pt done"><circle cx="450" cy="228" r="5"/><text x="452" y="254"><tspan class="d">OCT 13</tspan><tspan x="452" dy="14">First parts order</tspan></text></g>
+            <g class="pt now"><circle class="ring" cx="560" cy="212" r="5"/><circle cx="560" cy="212" r="5"/><text x="550" y="186" text-anchor="end"><tspan class="d">NOW</tspan><tspan x="550" dy="14">Bench bring-up</tspan></text></g>
+            <g class="pt next"><circle cx="690" cy="162" r="5"/><text x="690" y="200"><tspan class="d">DEC 2026</tspan><tspan x="690" dy="14">First controlled flight</tspan></text></g>
+            <g class="pt next"><circle cx="830" cy="96" r="5"/><text x="830" y="134"><tspan class="d">SPRING 2027</tspan><tspan x="830" dy="14">Vision-based autonomy</tspan></text></g>
+            <g class="pt next"><circle cx="965" cy="44" r="5"/><text x="955" y="24" text-anchor="end"><tspan class="d">2027–28 — COMPETE</tspan><tspan x="955" dy="14">IMAV · SUAS · cUASC · ICRA/IROS</tspan></text></g>
+          </svg>
+        </div>
+        <p class="fig-cap micro">FIG. 02 — FLIGHT LOG. DAY ONE WAS SEPTEMBER 18, 2026.</p>
+
+        <div class="log-grid">
+          <div class="support">
+            <p class="micro">FOR PARTNERS &amp; MENTORS</p>
+            <h3>Every dollar, <span class="serif">itemized.</span></h3>
+            <p>Drones scale with whatever funding exists. Parts money, fabrication time or a second pair of experienced eyes all go straight into the aircraft, and you’ll see exactly where.</p>
+            <a class="text-link" href="mailto:mihir.garimella@columbia.edu?subject=Supporting%20CURC%20Drones">Support the build <span aria-hidden="true">↗</span></a>
+          </div>
+          <figure class="receipt" aria-label="Receipt for parts ordered in fall 2026, totalling $744.86">
+            <p class="r-head">CURC DRONES<br>PARTS ORDERED<br>FALL 2026</p>
+            <ul>
+              <li><span>VELOX V2207 V3 ×15</span><i></i><span>244.50</span></li>
+              <li><span>6S 1100MAH ×8</span><i></i><span>179.51</span></li>
+              <li><span>ICM-42688-P IMU ×2</span><i></i><span>72.24</span></li>
+              <li><span>18650 CELLS ×4</span><i></i><span>71.92</span></li>
+              <li><span>ESP32-S3 DEVKIT ×4</span><i></i><span>60.00</span></li>
+              <li><span>ITSYBITSY 32U4 ×2</span><i></i><span>41.79</span></li>
+              <li><span>NRF24L01+ PAIR ×2</span><i></i><span>30.98</span></li>
+              <li><span>18650 HOLDER ×2</span><i></i><span>21.24</span></li>
+              <li><span>GIMBAL POTS ×4</span><i></i><span>14.52</span></li>
+              <li><span>THUMBSTICK ×2</span><i></i><span>8.16</span></li>
+            </ul>
+            <p class="r-total"><span>TOTAL</span><span>$744.86</span></p>
+            <p class="r-foot">NEXT: FETS, BOOTSTRAP,<br>CURRENT SENSE<br>* THANK YOU FOR BUILDING *</p>
+          </figure>
+        </div>
+      </div>
+      <span class="wp" data-seg="b" data-i="1"><i class="micro">WP 04</i></span>
+      <span class="wp" data-seg="b" data-i="2"></span>
+      <span class="wp" data-seg="b" data-i="3"></span>
+      <span class="wp" data-seg="b" data-i="4"></span>
+    </section>
+
+    <section id="get-involved" class="join page-padding lane-right" aria-labelledby="join-title">
+      <div class="section-label micro"><span>04 / GET INVOLVED</span><span>NO EXPERIENCE REQUIRED</span></div>
+      <div class="content">
+        <h2 id="join-title">Build<br>something <span class="serif">real.</span></h2>
+        <div class="join-grid">
+          <p class="join-lede">You don’t need to arrive as an expert. You do need to want to figure things out. Pick the part of the aircraft you know least about, and come build it.</p>
+          <dl class="facts">
+            <div><dt class="micro">WHEN</dt><dd>Fridays, 3–5 PM</dd></div>
+            <div><dt class="micro">WHERE</dt><dd>Columbia Makerspace</dd></div>
+            <div><dt class="micro">CHAT</dt><dd>#drones on the CURC Slack</dd></div>
+            <div><dt class="micro">LEADING</dt><dd>Roles open as we grow</dd></div>
+          </dl>
+        </div>
+        <a class="join-mail" href="mailto:mihir.garimella@columbia.edu">mihir.garimella@columbia.edu <span aria-hidden="true">↗</span></a>
+      </div>
+      <span class="wp" data-seg="b" data-i="5"><i class="micro">WP 05</i></span>
+      <span class="wp pad" data-seg="b" data-i="6"><i class="micro">LAND — HOME</i></span>
     </section>
   </main>
-  <noscript><style>.disciplines{display:none}.study-panels{display:block}.study-panels .panel[hidden]{display:block!important;visibility:visible!important;pointer-events:auto}.study-panels .panel{margin-top:20px}</style></noscript>
+
+  <footer class="foot">
+    <div class="foot-sky"><canvas aria-hidden="true"></canvas></div>
+    <div class="site-footer page-padding">
+      <a href="#top" class="footer-brand" aria-label="#drones — back to top">#drones<span aria-hidden="true">↗</span></a>
+      <a class="footer-x micro" href="https://x.com/ColumbiaDrones" target="_blank" rel="noopener noreferrer" aria-label="Follow the build on X, opens in a new tab">FOLLOW THE BUILD<br>ON X <span aria-hidden="true">↗</span></a>
+      <span class="micro footer-edition">NEW YORK CITY<br>EST. 2026</span>
+    </div>
+  </footer>
 </body>
 </html>

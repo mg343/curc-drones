@@ -17,6 +17,5 @@ Open index.html with styles.css, drone.js, script.js and assets/ alongside it. T
 - Timeline: the `.profile` SVG in index.html. Move the `pt now` marker and the end of the solid `flown` path as milestones land.
 - Spend: the receipt list and total in index.html.
 - Part status: the `NOW` rows in each aircraft step card.
-- Leads: the `.nodes` list.
 
 Scrolling is the browser's own; nothing takes it over. With reduced motion, the drawings render as still frames, the path drone jumps to its position, and nothing animates.

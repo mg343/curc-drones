@@ -108,7 +108,8 @@ h2 .serif{display:inline-block;margin-top:.08em;line-height:1.08;letter-spacing:
 .teams-intro{display:grid;grid-template-columns:1.1fr 1fr;gap:8%;align-items:end;padding-top:57px}
 .teams-intro p{font-size:16px;line-height:1.5;max-width:380px}
 .bus{margin-top:80px}
-.bus-head{display:flex;justify-content:space-between;gap:16px;padding-bottom:10px}
+.bus-head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 16px;padding-bottom:10px}
+.bus-m{display:none}
 .bus-divs{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:14px}
 .bus-divs span{padding:8px 10px 0;border:1px solid var(--ink);border-bottom:0;height:30px;color:var(--faint)}
 .nodes{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;border-top:2px solid var(--ink);position:relative}
@@ -264,6 +265,8 @@ h2 .serif{display:inline-block;margin-top:.08em;line-height:1.08;letter-spacing:
   .stack-list li:nth-child(even){border-left:1px solid var(--rule);padding-left:14px}
   .bus{margin-top:56px}
   .bus-divs{display:none}
+  .bus-head{flex-direction:column;gap:1px;font-size:9px}
+  .bus-m{display:block;color:var(--faint)}
   .nodes{grid-template-columns:1fr;gap:12px;border-top:0;border-left:2px solid var(--ink)}
   .nodes li{padding:0 0 0 30px}
   .nodes li::before{left:0;top:22px;height:0;width:30px;border-left:0;border-top:1px solid var(--ink)}
